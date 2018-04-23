@@ -6,6 +6,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import Header from './Header';
 import WizardForm from "./WizardForm";
 import Login from "./Login";
+import ProfileViewPage from "./ProfileViewPage";
 import { Link } from 'react-router-dom'
 
 export class App extends Component {
@@ -18,6 +19,7 @@ export class App extends Component {
             <Route exact path="/" component={Header} />
             <Route exact path="/signup" component={WizardForm} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/profile" component={ProfileViewPage} />
           </Switch>
         </div>
       </div>

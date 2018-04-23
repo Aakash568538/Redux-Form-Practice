@@ -4,6 +4,20 @@ import { getFormValues } from 'redux-form';
 
 const WizardFormFourthPage = ({ values }) => {
 
+    function getBase64Image(img) {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+    
+        var ctx = canvas.getContext("2d");
+    
+        var dataURL = canvas.toDataURL("image/png");
+    
+        return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+    }
+
+    var imgData = getBase64Image(values.picture[0].preview);
+
     var users = JSON.parse(localStorage.getItem("users") || "[]");
 
     let valuesObject = {
@@ -13,10 +27,8 @@ const WizardFormFourthPage = ({ values }) => {
         address: values.address,
         city: values.city,
         email: values.email,
-        image: values.picture[0].preview,
-        imageName: values.picture[0].name        
+        picture: imgData
     }
-    
     users.push(valuesObject);
     localStorage.setItem('users', JSON.stringify(users));
     return (
